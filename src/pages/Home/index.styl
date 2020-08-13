@@ -1,20 +1,22 @@
 .chrome-notes
+  position: relative;
   background #1d1f21
   color #fff
   .quill
-    padding: 40px 20px 50vh;
+    padding: 40px 20px;
     position: relative;
     text-align: initial;
     max-width: calc(80ch + 40px);
     margin: auto;
-    min-height calc(100vh)
+    min-height 100vh
+    overflow hidden
     cursor text
     .ql-container
       width 100%
-      height 100%
+      height calc(100vh - 80px)
       border none
       .ql-editor
-        letter-spacing 1.4px
+        letter-spacing 1.2px
         line-height: 1.3;
         font-size 16px
         width 100%
@@ -23,6 +25,13 @@
         overflow-wrap break-word
         white-space pre-wrap
         caret-color #3c3
+  #counter
+    position absolute
+    user-select none
+    opacity .2
+    font-size 12px
+    bottom 30px
+    right 30px
 
 ::selection
   background rgba(51,204,51,.4)
