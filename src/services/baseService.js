@@ -1,37 +1,12 @@
-import { BASE_URL } from 'root/mesibo-chat/src/constants'
-
-
-
-// processError = async (response, options = {}, traceId) => {
-//   const name = this.name || this.constructor.name
-//   const { errorCodesWithoutNotification = [], messageForCode = {} } = options
-//   const data = await response.json().catch(() => null)
-//   const title = `${name} Error.`
-//   const description = get(data, 'errors.0.msg') || _.get(data, 'message') || response.statusText
-//   const errorCode = get(data, 'errors.0.code')
-//   const errors = get(data, 'errors', [])
-// if (data && data.errors && data.errors.length > 1) {
-//   const errorsToShow = data.errors.filter(error => !errorCodesWithoutNotification.includes(error.code))
-//   errorsToShow.forEach((i, index) => {
-//     notification.error({ message: title, description: `${index}: ${i.msg}` })
-//   })
-// } else {
-//   if (!errorCodesWithoutNotification.includes(errorCode)) {
-//     notification.error({ message: title, description: `${description}` })
-//   }
-//
-//   if (errorCodesWithoutNotification.includes(errorCode) && messageForCode.hasOwnProperty(errorCode)) {
-//     notification.error({ message: title, description: `${messageForCode[errorCode]}` })
-//   }
-// }
-// throw new ServiceError(`${title} ${description}`, errors)
-// }
+const BASE_URL = 'https://api.github.com'
+const TOKEN = 'token fe5c46963f70e43598933ca31d7b49f4a67f16c0'
 
 const makeRequest = async (path = '', options = {}, json = true, text, isHeaders = false) => {
   options = {
     method: 'GET',
     headers: {
       Accept: 'application/json',
+      Authorization: TOKEN,
     },
     mode: 'cors',
     ...options,
@@ -39,13 +14,10 @@ const makeRequest = async (path = '', options = {}, json = true, text, isHeaders
 
   const response = await fetch(`${BASE_URL}${path}`, options)
 
-  console.log({ response })
-
   if (!response.ok) {
     // await this.processError(response, options, traceId)
     throw new Error('Req failed')
   }
-
 
   if (text) {
     return isHeaders ? { text: response.text(), headers: response.headers } : response.text()
@@ -60,6 +32,7 @@ const makePostRequest = async (path, data, responseAsJson = false) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: TOKEN,
     },
     body: JSON.stringify(data || {}),
   }
@@ -71,6 +44,7 @@ const makePutRequest = async (path, data, responseAsJson = false) => {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: TOKEN,
     },
     body: JSON.stringify(data || {}),
   }
@@ -82,6 +56,7 @@ const makePatchRequest = async (path, data, responseAsJson = false) => {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: TOKEN,
     },
     body: JSON.stringify(data || {}),
   }
