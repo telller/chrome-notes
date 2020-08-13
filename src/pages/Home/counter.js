@@ -12,9 +12,7 @@ class Counter {
     update() {
         const text = this.quill.getText().trim();
         const words = text.length > 0 ? text.split(/\s+/).length : 0
-        const charaters = text.length
-
-        this.container.innerText = `${charaters} character${charaters.length > 1 ? 's' : ''}\n${words} word${words.length > 1 ? 's' : ''}`;
+        this.container.innerText = `${text.length} character${text.length > 1 ? 's' : ''}\n${words} word${words > 1 ? 's' : ''}`;
     }
 }
 
