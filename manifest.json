@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "chrome-notes",
+  "description": "chrome-notes",
+  "homepage_url": "https://github.com/telller/chrome-notes",
+  "version": "1.0.0",
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  }
+}
